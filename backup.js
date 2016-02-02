@@ -102,9 +102,6 @@ exports.handler = function(event, context) {
   var s3Bucket = event.s3.bucket;
   var s3Folder = event.s3.folder + '/' + now + '/' + dbDatabase + '.tar.gz';
 
-  console.log('Event: ' + event);
-  console.log('Context: ' + context);
-
   backup.download(dbUsername, dbPassword, dbHost, dbPort, dbDatabase, outputDirectory).then(function(backupPath) {
     return backup.compress(backupPath).then(function(compressPath) {
       return backup.upload(s3Key, s3Secret, s3Bucket, s3Folder, compressPath).then(function() {
