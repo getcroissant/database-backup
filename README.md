@@ -19,7 +19,7 @@ Backup mongodb database and upload to the Amazon's S3 cloud storage: `backup.han
 
 ### Installation
 ```
-    npm install
+npm install
 ```
 
 ### Development
