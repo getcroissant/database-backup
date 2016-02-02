@@ -1,0 +1,15 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "",
+    "database": "database"
+  },
+  "s3": {
+    "key": "{{key}}",
+    "secret": "{{secret}}",
+    "bucket": "bucket",
+    "folder": "dev/backup/database"
+  }
+}
