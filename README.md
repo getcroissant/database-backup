@@ -11,10 +11,11 @@ Backup mongodb database and upload to the Amazon's S3 cloud storage: `backup.han
 - Connect to datastore and mongodump the database in a /tmp/{{date}} directory
 - Gzip the backed up mongodump to /tmp/{{date}}/{{database}}.tar.gz
 - Upload gzip file of the mongodump to Amazon S3
+- `TODO`: Encrypt gzip file
 - Delete the /tmp/{{date}} directory from local machine
 
 ### Use case:
-- Start a AWS lambda function uploading the zip of this project and passing in the configuration. See `event.json`
+- Start a AWS lambda function uploading the zip of this project with appropriate configs. See `config.json`
 - `TODO`: backup locally
 
 ### Installation
@@ -23,7 +24,7 @@ npm install
 ```
 
 ### Development
-Will use the configuration in the `event.json`.
+Will use the configuration in the `config.json`.
 ```
 node index.js
 ```

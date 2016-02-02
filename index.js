@@ -1,4 +1,4 @@
-var event = require('./event.json');
+var event = {};
 
 var context = {
   succeed: function(result) {

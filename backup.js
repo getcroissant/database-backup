@@ -1,5 +1,6 @@
 var Q = require('q');
 var moment = require('moment');
+var config = require('./config.json');
 
 var backup = {
 
@@ -90,17 +91,17 @@ exports.handler = function(event, context) {
   var outputDirectory = '/tmp/' + now + '/';
 
   //MongoDB credentials
-  var dbUsername = event.db.username;
-  var dbPassword = event.db.password;
-  var dbHost = event.db.host;
-  var dbPort = event.db.port;
-  var dbDatabase = event.db.database;
+  var dbUsername = config.db.username;
+  var dbPassword = config.db.password;
+  var dbHost = config.db.host;
+  var dbPort = config.db.port;
+  var dbDatabase = config.db.database;
 
   //AWS credentials
-  var s3Key = event.s3.key;
-  var s3Secret = event.s3.secret;
-  var s3Bucket = event.s3.bucket;
-  var s3Folder = event.s3.folder + '/' + now + '/' + dbDatabase + '.tar.gz';
+  var s3Key = config.s3.key;
+  var s3Secret = config.s3.secret;
+  var s3Bucket = config.s3.bucket;
+  var s3Folder = config.s3.folder + '/' + now + '/' + dbDatabase + '.tar.gz';
 
   backup.download(dbUsername, dbPassword, dbHost, dbPort, dbDatabase, outputDirectory).then(function(backupPath) {
     return backup.compress(backupPath).then(function(compressPath) {
