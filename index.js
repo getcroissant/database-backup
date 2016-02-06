@@ -9,4 +9,4 @@ var context = {
   }
 };
 
-require('./backup').handler(event, context);
+require('./database-backup').handler(event, context);

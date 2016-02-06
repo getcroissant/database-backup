@@ -2,7 +2,7 @@ var Q = require('q');
 var moment = require('moment');
 var config = require('./config.json');
 
-var backup = {
+var databaseBackup = {
 
   download: function(username, password, host, port, database, outputDirectory) {
     var mongodbBackup = require('mongodb-backup');
@@ -103,10 +103,10 @@ exports.handler = function(event, context) {
   var s3Bucket = config.s3.bucket;
   var s3Folder = config.s3.folder + '/' + now + '/' + dbDatabase + '.tar.gz';
 
-  backup.download(dbUsername, dbPassword, dbHost, dbPort, dbDatabase, outputDirectory).then(function(backupPath) {
-    return backup.compress(backupPath).then(function(compressPath) {
-      return backup.upload(s3Key, s3Secret, s3Bucket, s3Folder, compressPath).then(function() {
-        return backup.delete(outputDirectory);
+  databaseBackup.download(dbUsername, dbPassword, dbHost, dbPort, dbDatabase, outputDirectory).then(function(backupPath) {
+    return databaseBackup.compress(backupPath).then(function(compressPath) {
+      return databaseBackup.upload(s3Key, s3Secret, s3Bucket, s3Folder, compressPath).then(function() {
+        return databaseBackup.delete(outputDirectory);
       })
     });
   }).then(function() {
