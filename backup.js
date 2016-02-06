@@ -87,7 +87,7 @@ var backup = {
 
 exports.handler = function(event, context) {
   //Global variables
-  var now = moment.utc().format("YYYY-MM-DD-hh.mm.ss");
+  var now = moment.utc().format("YYYY-MM-DD-HH.mm.ss");
   var outputDirectory = '/tmp/' + now + '/';
 
   //MongoDB credentials
