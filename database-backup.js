@@ -53,7 +53,7 @@ var databaseBackup = {
         s3.putObject(params, function(err, data) {
           if(err) reject(`[Database Backup] - Failed to upload file to S3: ${err}`);
 
-          console.log(`[Database Backup] - Successfully uploaded file compvared at ${bucket} @ ${key}`);
+          console.log(`[Database Backup] - Successfully uploaded file completed at ${bucket} @ ${key}`);
 
           resolve();
         });
@@ -62,12 +62,12 @@ var databaseBackup = {
 
   },
 
-  devare(source) {
+  delete(source) {
     return new Promise((resolve, reject) => {
       rimraf(source, function(err) {
-        if(err) reject(`[Database Backup] - Failed to devare temp file on local machine: ${err}`);
+        if(err) reject(`[Database Backup] - Failed to delete temp file on local machine: ${err}`);
 
-        console.log(`[Database Backup] - Successfully devared ${source} from local machine`);
+        console.log(`[Database Backup] - Successfully deleted ${source} from local machine`);
 
         resolve();
       });
@@ -96,11 +96,11 @@ exports.handler = (event, context) => {
   databaseBackup.download(dbUsername, dbPassword, dbHost, dbPort, dbDatabase, outputDirectory).then(backupPath => {
     return databaseBackup.compress(backupPath).then(compressPath => {
       return databaseBackup.upload(s3Key, s3Secret, s3Bucket, s3Folder, compressPath).then(() => {
-        return databaseBackup.devare(outputDirectory);
+        return databaseBackup.delete(outputDirectory);
       })
     });
   }).then(() => {
-    context.succeed('[Database Backup] - Execution compvare.');
+    context.succeed('[Database Backup] - Execution complete.');
   }, err => {
     context.fail(err);
   })
