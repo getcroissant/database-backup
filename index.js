@@ -1,10 +1,10 @@
-var event = {};
+let event = {};
 
-var context = {
-  succeed: function(result) {
+let context = {
+  succeed(result)  {
     console.log(result);
   },
-  fail: function(err) {
+  fail(err) {
     console.log(err);
   }
 };
