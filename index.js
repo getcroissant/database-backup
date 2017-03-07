@@ -1,6 +1,6 @@
-let event = {};
+var event = {};
 
-let context = {
+var context = {
   succeed(result)  {
     console.log(result);
   },
