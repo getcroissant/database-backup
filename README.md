@@ -23,6 +23,11 @@ Backup mongodb database and upload to the Amazon's S3 cloud storage: `backup.han
 npm install
 ```
 
+### Warning
+```
+  Change the dir folder to root folder in mongodb-backup package
+```
+
 ### Development
 Will use the configuration in the `config.json`.
 ```

@@ -1,15 +1,12 @@
 {
-  "db": {
-    "host": "localhost",
-    "port": 3306,
-    "username": "root",
-    "password": "",
+  "mongodb": {
+    "uri": "mongodb://localhost:27017",
     "database": "database"
   },
   "s3": {
-    "key": "{{key}}",
-    "secret": "{{secret}}",
-    "bucket": "bucket",
+    "key": "{{AWS_KEY}}",
+    "secret": "{{AWS_SECRET}}",
+    "bucket": "{{AWS_BUCKET}}",
     "folder": "dev/backup/database"
   }
 }
